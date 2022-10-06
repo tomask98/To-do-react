@@ -1,12 +1,17 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
-import { borderColor } from "@mui/system";
 
-function Formulario({ crearTarea }) {
+import Button from "@mui/material/Button";
+import AddComment from "@mui/icons-material/AddComment";
+import { TaskContext } from "../context/taskcontext";
+
+
+function Formulario() {
   const [titulo, setTitulo] = useState("");
   const [descripcion, setdescripcion] = useState("");
+  const {crearTarea} = useContext(TaskContext)
 
   const EnviarForm = (e) => {
     e.preventDefault();
@@ -21,7 +26,7 @@ function Formulario({ crearTarea }) {
   };
 
   return (
-    <form onSubmit={EnviarForm}>
+    <form onSubmit  ={EnviarForm }>
       <Stack
         direction="row"
         spacing={3}
@@ -33,6 +38,7 @@ function Formulario({ crearTarea }) {
           variant="standard"
           color="success"
           placeholder="Añadir Tarea"
+          
           onChange={(e) => setTitulo(e.target.value)}
           value={titulo}
           autoFocus
@@ -47,16 +53,12 @@ function Formulario({ crearTarea }) {
           value={descripcion}
         />
 
-        <button
-          style={{
-            background: "none",
-            border: "2px solid green",
-            borderRadius: "20px"
-          }}
-        >
-        
+        <Button
+        onClick={EnviarForm}
+        variant="contained"
+        startIcon={<AddComment />}>
           Agregar Tarea
-        </button>
+        </Button>
       </Stack>
     </form>
   );

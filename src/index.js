@@ -3,6 +3,7 @@ import ReactDom from "react-dom/client";
 // import { Lista } from "./Lista";
 // import { Formulario } from "./Formulario";
 import App from "./App.js";
+import { TaskContextprovider } from "./context/taskcontext";
 
 
 const root = ReactDom.createRoot(document.getElementById("root"));
@@ -13,9 +14,10 @@ const root = ReactDom.createRoot(document.getElementById("root"));
 root.render(
 
   
-  <>
-  <App/>
-  {/* <Formulario/>
-  <Lista/> */}
-  </>
+  
+  <TaskContextprovider>
+  <App />
+  </TaskContextprovider>
+  
+  
 );
